@@ -7,15 +7,12 @@
     %th Place
     %th
     %th
-    %th
   - @events.each do |event|  
     %tr
       %td #{event.date}
       %td         
         = link_to 'Pick', pick_event_path(event) , :class => 'button' if event.place.nil?
         =  link_to event.place, pick_event_path(event), :confirm => 'Do you really to want to pick another place to go?' unless event.place.nil?
-      %td 
-        =link_to 'Show', event, :class => 'button'
       %td 
         =link_to 'Edit', edit_event_path(event), :class => 'button'
       %td 

@@ -10,7 +10,7 @@ class OptionsController < ApplicationController
     
   def create    
     @option = Option.new(params[:option])    
-    if @option.name == 'Natural da Terra' then
+    if @option.name.downcase == 'natural da terra' then
       @option = nil
       flash[:notice] = "Erro Desconhecido" 
     else

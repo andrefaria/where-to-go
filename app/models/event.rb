@@ -5,13 +5,17 @@ class Event < ActiveRecord::Base
   
 
   def pick_a_place
-    if self.options.empty? then
-      self.errors.add :place, 'To pick a place you should first add some options to the event'
+    if self.options.empty? or self.options.length <= 1 then
+      self.errors.add :place, 'To pick a place you should first add at least two options to the event'
       return false
     else
-      self.place = self.options[rand(self.options.size())].name
+      old_place = self.place
+      while self.place.nil? or self.place == old_place do
+        self.place = self.options[rand(self.options.size())].name
+      end
       return true
     end
+    puts self.place
   end
   
 end
