@@ -1,6 +1,6 @@
 class RemoveNameFromEvent < ActiveRecord::Migration
   def self.up
-    remone_column :events, :name
+    remove_column :events, :name
   end
 
   def self.down
