@@ -1,4 +1,8 @@
-$('#notice',"<%= flash[:notice] %>");
+$('#notice').text("<%= flash[:notice] %>").removeClass('hide');
+
+<% unless @option.nil? then %>
 var deleteLink = '<a rel="nofollow" data-remote="true" data-method="delete" data-confirm="Tem certeza?" href="/options/<%= @option.id %>">x</a>'
 $('#options_list').append('<li option_id="<%= @option.id %>"><%= @option.name %> '+deleteLink+'</li>');
+<% end %>
+
 $('#option_name').val('')
