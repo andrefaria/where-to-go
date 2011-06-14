@@ -1,0 +1,13 @@
+%h1 Where to Go?
+
+- if @event.errors.any?
+ %div.error
+  %ul
+   - @event.errors.on(:place) do |msg|
+    %li #{msg}
+
+- if @event.errors.empty?
+ %div.info 
+  %h2 Let's go to #{@event.place}
+
+= link_to 'Back', events_path

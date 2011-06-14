@@ -1,0 +1,19 @@
+%h1 Editing event
+=render 'form'
+
+%hr	
+%h2 Options
+
+%ul#options_list
+  -@event.options.each do |e|
+    %li{:option_id => e.id} 
+      #{e.name}
+      =link_to 'x', option_path(e.id), :method => :delete, :confirm => "Tem certeza?", :remote => true
+
+=form_for Option.new, :remote => true do |f|
+  =f.text_field(:name)
+  =f.hidden_field(:event_id, :value => @event.id)
+  = f.submit(:remote => true, :clas => 'button')
+
+=link_to 'Show', @event, :class => "button" 
+=link_to 'Back', events_path, :class => "button"

@@ -1,0 +1,4 @@
+require "autotest/growl"
+require "test_notifier/autotest"
+
+Autotest.add_discovery { "rspec2" }

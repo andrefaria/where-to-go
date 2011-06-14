@@ -1,0 +1,27 @@
+%h1 Where to Go?
+
+- unless notice.nil?
+  %div.notice #{notice}
+
+%table
+  %tr
+    %th When
+    %th Place
+    %th
+    %th
+    %th
+  - @events.each do |event|  
+    %tr
+      %td #{event.date}
+      %td         
+        = link_to 'Pick', pick_event_path(event) , :class => 'button' if event.place.nil?
+        =  link_to event.place, pick_event_path(event), :confirm => 'Do you really to want to pick another place to go?' unless event.place.nil?
+      %td 
+        =link_to 'Show', event, :class => 'button'
+      %td 
+        =link_to 'Edit', edit_event_path(event), :class => 'button'
+      %td 
+        =link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete, :class => 'button'
+
+%br
+= link_to 'New Event', new_event_path, :class => 'button'
