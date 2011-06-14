@@ -5,14 +5,18 @@ class OptionsController < ApplicationController
   def destroy
     @option = Option.find(params[:id])
     @option.destroy    
-    flash[:notice] = "Option Gone!" 
+    flash[:notice] = "Option Removed!" 
   end
     
   def create    
-    @option = Option.new(params[:option])    
-    if @option.name.downcase == 'natural da terra' then
+    @option = Option.new(params[:option])   
+
+    if @option.name.strip.empty? then
+     @option = nil
+     flash[:notice] = "Please enter a valid place" 
+    elsif @option.name.downcase == 'natural da terra' then
       @option = nil
-      flash[:notice] = "Erro Desconhecido" 
+      flash[:notice] = "Unknown Error!" 
     else
       @option.save!
       flash[:notice] = "Option Added!" 

@@ -11,7 +11,7 @@
   -@event.options.each do |e|
     %li{:option_id => e.id} 
       #{e.name}
-      =link_to 'x', option_path(e.id), :method => :delete, :confirm => "Tem certeza?", :remote => true
+      =link_to 'x', option_path(e.id), :method => :delete, :confirm => "Remove option?", :remote => true
 
 =form_for Option.new, :remote => true do |f|
   =f.text_field(:name)
